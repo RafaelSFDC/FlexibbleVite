@@ -1,9 +1,6 @@
-import { account, appwriteConfig, avatars, client, databases, storage } from "./AppWriteConfig";
+import { account, appwriteConfig, avatars, databases, storage } from "./AppWriteConfig";
 import { ID, Query } from "appwrite";
-import { toast } from 'sonner';
 import state from './../../store/index';
-
-
 
 //==================================
 // FUNCTIONS
@@ -95,26 +92,22 @@ export const appWriteGetProjects = async () => {
 // CREATE DOCUMENTS
 //==================================
 export async function uploadFile(file) {
-    try {
-        const uploadedFile = await storage.createFile(
-            appwriteConfig.storageId,
-            ID.unique(),
-            file
-        );
-
-        const fileUrl = storage.getFilePreview(
-            appwriteConfig.storageId,
-            uploadedFile.$id,
-            2000,
-            2000,
-            "top",
-            100
-        );
-
-        return fileUrl;
-    } catch (error) {
-        throw error
-    }
+    const uploadedFile = await storage.createFile(
+        appwriteConfig.storageId,
+        ID.unique(),
+        file
+    );
+    if (!uploadedFile) throw Error
+    const fileUrl = storage.getFilePreview(
+        appwriteConfig.storageId,
+        uploadedFile.$id,
+        2000,
+        2000,
+        "top",
+        100
+    );
+    if (!fileUrl) throw Error
+    return fileUrl;
 }
 export async function appWriteSaveUserToDB(user) {
     try {

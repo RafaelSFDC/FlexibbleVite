@@ -23,7 +23,7 @@ const CreateAccountModal = () => {
 
     toast.promise(appWriteCreateUser(data), {
       loading: "Creating your account...",
-      success: (data) => {
+      success: () => {
         state.createAccountModal = false;
         return `Your account has been created successfully`;
       },

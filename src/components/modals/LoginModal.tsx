@@ -18,7 +18,7 @@ const LoginModal = () => {
 
     toast.promise(appWriteLogin(data), {
       loading: "Logging in...",
-      success: (data) => {
+      success: () => {
         state.loginModal = false;
         return `Logged in successfully`;
       },

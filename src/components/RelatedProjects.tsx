@@ -17,7 +17,7 @@ type Props = {
   }[];
 };
 const RelatedProjects = ({ projects }: Props) => {
-  const findIndex = (id) => {
+  const findIndex = (id: string) => {
     state.projectModal = false;
     state.activeProject = -1;
     setTimeout(() => {

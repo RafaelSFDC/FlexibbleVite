@@ -71,7 +71,7 @@ const ProjectForm = ({ type }: { type: string }) => {
     if (type === "create") {
       toast.promise(appWriteCreateProject(data, file), {
         loading: "Creating your project...",
-        success: (data) => {
+        success: () => {
           state.projectModalForm = false;
           state.projectModalFormEdit = false;
           return `Your project has been created successfully`;
@@ -81,7 +81,7 @@ const ProjectForm = ({ type }: { type: string }) => {
     } else {
       toast.promise(appWriteEditProject(data, file), {
         loading: "Updating your project...",
-        success: (data) => {
+        success: () => {
           state.projectModalForm = false;
           state.projectModalFormEdit = false;
           return `Your project has been updated successfully`;
@@ -128,7 +128,6 @@ const ProjectForm = ({ type }: { type: string }) => {
           <img
             src={selectedImage}
             alt="Project poster"
-            fill
             className="sm:p-10 object-container z-20 "
           />
         )}

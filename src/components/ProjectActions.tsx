@@ -12,12 +12,12 @@ const ProjectActions = ({ projectId }: { projectId: string }) => {
     }
     toast.promise(appWriteDeleteProject(projectId), {
       loading: "Deleting your project...",
-      success: (data) => {
+      success: () => {
         loading = false;
         state.projectModal = false;
         return `Your project has been deleted successfully`;
       },
-      error: (data) => {
+      error: () => {
         loading = false;
         return `Something went wrong, please try again later`;
       },

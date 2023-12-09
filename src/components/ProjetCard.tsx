@@ -12,16 +12,7 @@ type Props = {
   count: number;
 };
 
-const ProjetCard = ({
-  id,
-  image,
-  title,
-  name,
-  avatarUrl,
-  userId,
-  index,
-  count,
-}: Props) => {
+const ProjetCard = ({ image, title, name, avatarUrl, index, count }: Props) => {
   return (
     <AnimatePresence>
       <motion.div

@@ -1,17 +1,12 @@
-import { useEffect } from "react";
 import { useSnapshot } from "valtio";
 import ButtonMotion from "./framerMotion/ButtonMotion";
 import { NavLinks } from "../constants";
 import state from "../store/index";
-import { checkUser, appWriteGetProjects } from "./../libs/appwrite/api";
+import { lazy } from "react";
+
 const Navbar = () => {
   const snap = useSnapshot(state);
-  useEffect(() => {
-    return () => {
-      checkUser();
-      appWriteGetProjects();
-    };
-  }, []);
+
   return (
     <nav className="flexBetween navbar">
       <div className="flex-1 flexStart gap-10">
@@ -29,7 +24,7 @@ const Navbar = () => {
       <div className="flexCenter gap-4">
         {snap.logged ? (
           <>
-            <a href={"/profile/user"}>
+            <button>
               <img
                 src={
                   snap.user.image
@@ -40,7 +35,7 @@ const Navbar = () => {
                 width={40}
                 height={40}
               />
-            </a>
+            </button>
 
             <a href={"/create-project"}>Share Work</a>
             <ButtonMotion type="button" className="text-sm">

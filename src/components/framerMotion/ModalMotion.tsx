@@ -1,41 +1,43 @@
-import React, { useCallback, useRef } from "react";
+import React, { useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
+import ReactDom from "react-dom";
+import state from "../../store";
 
-const ModalMotion = ({ children }: { children: React.ReactNode }) => {
-  const overlay = useRef<HTMLDivElement>(null);
-  const wrapper = useRef<HTMLDivElement>(null);
-  const router = useRouter();
+type Props = {
+  children: React.ReactNode;
+  isOpen: boolean;
+};
+
+const ModalMotion = ({ children, isOpen }: Props) => {
   const onDismiss = () => {
-    router.push("/");
+    state.projectModalForm = false;
   };
-  const handleClick = useCallback(
-    (e: React.MouseEvent) => {
-      if (e.target === overlay.current && onDismiss) {
-        onDismiss();
-      }
-    },
-    [onDismiss, overlay]
-  );
 
-  return (
+  const handleClick = () => {};
+
+  const modalRoot = useRef(document.getElementById("modal"));
+  const modalRef = useRef(document.createElement("div")); // Inicializa com um elemento vazio
+
+  return ReactDom.createPortal(
     <AnimatePresence>
-      <motion.div ref={overlay} className="modal" onClick={handleClick}>
-        <button className="absolute top-4 right-8" onClick={onDismiss}>
-          <Image src="/close.svg" alt="close" width={17} height={17} />
-        </button>
-        <motion.div
-          ref={wrapper}
-          className="modal_wrapper"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-        >
-          {children}
+      {isOpen ? (
+        <motion.div className="modal" onClick={handleClick}>
+          <button className="absolute top-4 right-8" onClick={onDismiss}>
+            <img src="/close.svg" alt="close" width={17} height={17} />
+          </button>
+          <motion.div
+            className="modal_wrapper"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, scale: 0 }}
+          >
+            {children}
+          </motion.div>
         </motion.div>
-      </motion.div>
-    </AnimatePresence>
+      ) : null}
+    </AnimatePresence>,
+    modalRoot.current || modalRef.current
   );
 };
 

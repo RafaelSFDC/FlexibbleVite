@@ -1,7 +1,4 @@
-"use client";
-import Image from "next/image";
 import FormField from "./FormField";
-import { categoryFilters } from "@/constants";
 import CustomMenu from "./CustomMenu";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
@@ -9,16 +6,15 @@ import ButtonMotion from "./framerMotion/ButtonMotion";
 import {
   appWriteCreateProject,
   appWriteEditProject,
-} from "@/app/api/appwrite/api";
-import { usePathname, useRouter } from "next/navigation";
-import state from "@/store/store";
+} from "../libs/appwrite/api.js";
 import { useSnapshot } from "valtio";
+import { categoryFilters } from "../constants";
+import state from "../store";
 
 const ProjectForm = ({ type }: { type: string }) => {
   const snap = useSnapshot(state);
   const [selectedImage, setSelectedImage] = useState("");
   const [file, setFile] = useState<File | undefined>(undefined);
-  const router = useRouter();
 
   // EDIT FORM ONLY
   useEffect(() => {
@@ -27,8 +23,7 @@ const ProjectForm = ({ type }: { type: string }) => {
     };
   }, []);
 
-  const pathname = usePathname();
-  const path = pathname;
+  const path = "id";
   const value = path.split("project/")[1];
   const projectIndex = snap.projects.findIndex(
     (project: any) => project.$id === value
@@ -65,7 +60,6 @@ const ProjectForm = ({ type }: { type: string }) => {
       toast.promise(appWriteCreateProject(data, file), {
         loading: "Creating your project...",
         success: (data) => {
-          router.push("/");
           return `Your project has been created successfully`;
         },
         error: "Something went wrong, please try again later",
@@ -74,7 +68,6 @@ const ProjectForm = ({ type }: { type: string }) => {
       toast.promise(appWriteEditProject(data, file), {
         loading: "Updating your project...",
         success: (data) => {
-          router.push("/");
           return `Your project has been updated successfully`;
         },
         error: "Something went wrong, please try again later",
@@ -114,7 +107,7 @@ const ProjectForm = ({ type }: { type: string }) => {
           onChange={handleChangeImage}
         />
         {selectedImage && (
-          <Image
+          <img
             src={selectedImage}
             alt="Project poster"
             fill

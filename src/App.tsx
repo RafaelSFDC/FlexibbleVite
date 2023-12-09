@@ -6,11 +6,9 @@ import { useEffect } from "react";
 import { appWriteGetProjects, checkUser } from "./libs/appwrite/api";
 import { Toaster } from "sonner";
 import CreateProjectModal from "./components/modals/CreateProjectModal";
-import { useSnapshot } from "valtio";
-import state from "./store/index";
 import EditProjectModal from "./components/modals/EditProjectModal";
+import ProjectModal from "./components/modals/ProjectModal";
 function App() {
-  const snap = useSnapshot(state);
   useEffect(() => {
     return () => {
       checkUser();
@@ -22,6 +20,7 @@ function App() {
     <>
       <EditProjectModal />
       <CreateProjectModal />
+      <ProjectModal />
       <Navbar />
       <main>
         <Home />

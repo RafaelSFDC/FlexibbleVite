@@ -1,14 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
 import ButtonMotion from "./framerMotion/ButtonMotion";
 import { toast } from "sonner";
-import { appWriteDeleteProject } from "@/app/api/appwrite/api";
-import state from "@/store/store";
-import { useRouter } from "next/navigation";
+import state from "../store";
+import { appWriteDeleteProject } from "../libs/appwrite/api";
 
 const ProjectActions = ({ projectId }: { projectId: string }) => {
   let loading = false;
-  const router = useRouter();
 
   const handleDeleteProject = async () => {
     if (state.deletingProject) {
@@ -18,7 +14,7 @@ const ProjectActions = ({ projectId }: { projectId: string }) => {
       loading: "Deleting your project...",
       success: (data) => {
         loading = false;
-        router.push("/");
+        state.projectModal = false;
         return `Your project has been deleted successfully`;
       },
       error: (data) => {
@@ -29,10 +25,13 @@ const ProjectActions = ({ projectId }: { projectId: string }) => {
   };
   return (
     <>
-      <ButtonMotion className="flexCenter view-action_btn bg-green-500">
-        <Link href={`/edit-project/${projectId}`}>
-          <Image src="/pencile.svg" alt="edit" width={24} height={24} />
-        </Link>
+      <ButtonMotion
+        className="flexCenter view-action_btn bg-green-500"
+        onClick={() => (
+          (state.projectModal = false), (state.projectModalFormEdit = true)
+        )}
+      >
+        <img src="/pencile.svg" alt="edit" width={24} height={24} />
       </ButtonMotion>
       <ButtonMotion
         type="button"
@@ -40,7 +39,7 @@ const ProjectActions = ({ projectId }: { projectId: string }) => {
         onClick={handleDeleteProject}
         disabled={loading}
       >
-        <Image src="/trash.svg" alt="delete" width={24} height={24} />
+        <img src="/trash.svg" alt="delete" width={24} height={24} />
       </ButtonMotion>
     </>
   );

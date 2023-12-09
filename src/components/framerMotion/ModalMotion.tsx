@@ -12,6 +12,7 @@ const ModalMotion = ({ children, isOpen }: Props) => {
   const onDismiss = () => {
     state.projectModalForm = false;
     state.projectModalFormEdit = false;
+    state.projectModal = false;
   };
 
   const handleClick = () => {};

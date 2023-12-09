@@ -39,8 +39,25 @@ const ProjectForm = ({ type }: { type: string }) => {
     liveSiteUrl: string;
     githubUrl: string;
   };
-  const projectDetails: ProjectDetails = snap.projects[snap.activeProject];
-  console.log(state.activeProject);
+  const projectDetails: ProjectDetails =
+    type === "edit"
+      ? snap.projects[snap.activeProject]
+      : {
+          $id: "",
+          title: "",
+          createdBy: [
+            {
+              $id: "",
+              name: "",
+              avatarURL: "",
+            },
+          ],
+          category: "",
+          image: "",
+          description: "",
+          liveSiteUrl: "",
+          githubUrl: "",
+        };
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);

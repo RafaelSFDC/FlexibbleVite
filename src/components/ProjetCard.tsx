@@ -1,3 +1,5 @@
+import state from "../store";
+
 type Props = {
   id: string;
   image: string;
@@ -5,13 +7,24 @@ type Props = {
   name: string;
   avatarUrl: string;
   userId: string;
+  index: number;
 };
 
-const ProjetCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
+const ProjetCard = ({
+  id,
+  image,
+  title,
+  name,
+  avatarUrl,
+  userId,
+  index,
+}: Props) => {
   return (
     <div className="flexCenter flex-col rounded-2xl drop-shadow-card">
-      <a
-        href={`/project/${id}`}
+      <button
+        onClick={() => {
+          (state.activeProject = index), (state.projectModalFormEdit = true);
+        }}
         className="flexCenter group relative w-full h-full"
       >
         <img
@@ -25,9 +38,9 @@ const ProjetCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
         <div className="hidden group-hover:flex profile_card-title">
           <p className="w-full">{title}</p>
         </div>
-      </a>
+      </button>
       <div className="flexBetween w-full px-2 mt-3 font-semibold text-sm">
-        <a href={`/profile/${userId}`}>
+        <button>
           <div className="flexCenter gap-2">
             <img
               src={avatarUrl}
@@ -38,7 +51,7 @@ const ProjetCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
             />
             <p>{name}</p>
           </div>
-        </a>
+        </button>
         <div className="flexCenter gap-3 ">
           <div className="flexCenter gap-2">
             <img src="/hearth.svg" width={18} height={18} alt="heart" />

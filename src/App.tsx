@@ -8,6 +8,7 @@ import { Toaster } from "sonner";
 import CreateProjectModal from "./components/modals/CreateProjectModal";
 import { useSnapshot } from "valtio";
 import state from "./store/index";
+import EditProjectModal from "./components/modals/EditProjectModal";
 function App() {
   const snap = useSnapshot(state);
   useEffect(() => {
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <>
+      <EditProjectModal />
       <CreateProjectModal />
       <Navbar />
       <main>

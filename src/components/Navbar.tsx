@@ -37,7 +37,9 @@ const Navbar = () => {
               />
             </button>
 
-            <a href={"/create-project"}>Share Work</a>
+            <button onClick={() => (state.projectModalForm = true)}>
+              Share Work
+            </button>
             <ButtonMotion type="button" className="text-sm">
               Sign Out
             </ButtonMotion>

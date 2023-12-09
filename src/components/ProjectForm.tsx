@@ -23,11 +23,6 @@ const ProjectForm = ({ type }: { type: string }) => {
     };
   }, []);
 
-  const path = "id";
-  const value = path.split("project/")[1];
-  const projectIndex = snap.projects.findIndex(
-    (project: any) => project.$id === value
-  );
   type ProjectDetails = {
     $id: string;
     title: string;
@@ -44,8 +39,8 @@ const ProjectForm = ({ type }: { type: string }) => {
     liveSiteUrl: string;
     githubUrl: string;
   };
-  const projectDetails: ProjectDetails = snap.projects[projectIndex];
-
+  const projectDetails: ProjectDetails = snap.projects[snap.activeProject];
+  console.log(state.activeProject);
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -60,6 +55,8 @@ const ProjectForm = ({ type }: { type: string }) => {
       toast.promise(appWriteCreateProject(data, file), {
         loading: "Creating your project...",
         success: (data) => {
+          state.projectModalForm = false;
+          state.projectModalFormEdit = false;
           return `Your project has been created successfully`;
         },
         error: "Something went wrong, please try again later",
@@ -68,6 +65,8 @@ const ProjectForm = ({ type }: { type: string }) => {
       toast.promise(appWriteEditProject(data, file), {
         loading: "Updating your project...",
         success: (data) => {
+          state.projectModalForm = false;
+          state.projectModalFormEdit = false;
           return `Your project has been updated successfully`;
         },
         error: "Something went wrong, please try again later",
@@ -94,9 +93,11 @@ const ProjectForm = ({ type }: { type: string }) => {
   return (
     <form onSubmit={handleFormSubmit} className="flexStart form">
       <div className="flexStart form_image-container">
-        <label htmlFor="poster" className="flexCenter form_image-label">
-          {!selectedImage && "Upload Image"}
-        </label>
+        {!selectedImage && (
+          <label htmlFor="poster" className="flexCenter form_image-label">
+            Upload Image
+          </label>
+        )}
         <input
           id="image"
           type="file"

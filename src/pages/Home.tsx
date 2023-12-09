@@ -10,7 +10,7 @@ export default function Home() {
       <Categories />
       <section className="projects-grid">
         {snap.projects.length > 0 ? (
-          snap.projects.map((project: any) => {
+          snap.projects.map((project: any, index: number) => {
             if (
               snap.activeFilter !== "All" &&
               project.category !== snap.activeFilter
@@ -27,6 +27,7 @@ export default function Home() {
                 name={project.createdBy[0].name}
                 avatarUrl={project.createdBy[0].avatarURL}
                 userId={project.createdBy[0].$id}
+                index={index}
               />
             );
           })

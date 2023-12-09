@@ -14,10 +14,11 @@ const state = proxy({
     image: "",
     $id: "",
   },
-  projectModalForm: true,
+  projectModalForm: false,
+  projectModalFormEdit: false,
+  activeProject: 0,
   activeUserId: null,
   activeFilter: "All",
-  chatCrated: false,
   deletingProject: false,
 });
 

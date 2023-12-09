@@ -33,6 +33,7 @@ export const checkUser = async () => {
 //==================================
 export async function appWriteCreateUser(user, setLoading) {
     console.log("user", user)
+    state.loading.createAccount = true
     try {
         const newAccount = await account.create(
             ID.unique(),
@@ -59,6 +60,7 @@ export async function appWriteCreateUser(user, setLoading) {
         throw error
     } finally {
         setLoading(false)
+        state.loading.createAccount = false
     }
 }
 
@@ -66,6 +68,7 @@ export const appWriteLogin = async (userAccount) => {
     try {
         const response = await account.createEmailSession(userAccount.email, userAccount.password)
         state.logged = true
+        checkUser()
         return response;
     } catch (error) {
         throw new Error("Invalid credentials, please try again");

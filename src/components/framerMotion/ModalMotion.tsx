@@ -13,6 +13,8 @@ const ModalMotion = ({ children, isOpen }: Props) => {
     state.projectModalForm = false;
     state.projectModalFormEdit = false;
     state.projectModal = false;
+    state.createAccountModal = false;
+    state.loginModal = false;
   };
 
   const handleClick = () => {};

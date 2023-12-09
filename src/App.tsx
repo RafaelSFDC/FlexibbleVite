@@ -8,6 +8,8 @@ import { Toaster } from "sonner";
 import CreateProjectModal from "./components/modals/CreateProjectModal";
 import EditProjectModal from "./components/modals/EditProjectModal";
 import ProjectModal from "./components/modals/ProjectModal";
+import CreateAccountModal from "./components/modals/CreateAccountModal";
+import LoginModal from "./components/modals/LoginModal";
 function App() {
   useEffect(() => {
     return () => {
@@ -20,6 +22,8 @@ function App() {
     <>
       <EditProjectModal />
       <CreateProjectModal />
+      <CreateAccountModal />
+      <LoginModal />
       <ProjectModal />
       <Navbar />
       <main>

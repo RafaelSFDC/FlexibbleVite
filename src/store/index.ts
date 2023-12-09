@@ -1,10 +1,12 @@
 import { proxy } from "valtio";
 
 const state = proxy({
-  logged: true,
+  logged: false,
   loading: {
     start: true,
     chats: true,
+    createAccount: true,
+    projects: true,
   },
   userId: "",
   userCollection: "",
@@ -22,6 +24,8 @@ const state = proxy({
   projectModalForm: false,
   projectModalFormEdit: false,
   projectModal: false,
+  createAccountModal: false,
+  loginModal: false,
   activeProject: -1,
   activeUserId: null,
   activeFilter: "All",

@@ -9,6 +9,7 @@ type Props = {
   avatarUrl: string;
   userId: string;
   index: number;
+  count: number;
 };
 
 const ProjetCard = ({
@@ -19,13 +20,14 @@ const ProjetCard = ({
   avatarUrl,
   userId,
   index,
+  count,
 }: Props) => {
   return (
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1, translate: 0 }}
-        transition={{ duration: 1, delay: index * 0.3 }}
+        transition={{ duration: 1, delay: count * 0.3 }}
         exit={{ opacity: 0, scale: 0 }}
         className="flexCenter flex-col rounded-2xl drop-shadow-card"
       >

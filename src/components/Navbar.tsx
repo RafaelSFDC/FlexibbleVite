@@ -2,7 +2,7 @@ import { useSnapshot } from "valtio";
 import ButtonMotion from "./framerMotion/ButtonMotion";
 import { NavLinks } from "../constants";
 import state from "../store/index";
-import { lazy } from "react";
+import { appWriteLogout } from "../libs/appwrite/api";
 
 const Navbar = () => {
   const snap = useSnapshot(state);
@@ -40,22 +40,29 @@ const Navbar = () => {
             <button onClick={() => (state.projectModalForm = true)}>
               Share Work
             </button>
-            <ButtonMotion type="button" className="text-sm">
+            <ButtonMotion
+              type="button"
+              className="text-sm"
+              onClick={() => ((state.logged = false), appWriteLogout())}
+            >
               Sign Out
             </ButtonMotion>
           </>
         ) : (
           <>
-            <a href="login">
-              <ButtonMotion className="btn btn-ghost btn-small">
-                Sign In
-              </ButtonMotion>
-            </a>
-            <a href="create-account">
-              <ButtonMotion className="btn btn-primary btn-small bg">
-                Sign Up
-              </ButtonMotion>
-            </a>
+            <ButtonMotion
+              className="btn btn-ghost btn-small"
+              onClick={() => (state.loginModal = true)}
+            >
+              Sign In
+            </ButtonMotion>
+
+            <ButtonMotion
+              className="btn btn-primary btn-small bg"
+              onClick={() => (state.createAccountModal = true)}
+            >
+              Sign Up
+            </ButtonMotion>
           </>
         )}
       </div>

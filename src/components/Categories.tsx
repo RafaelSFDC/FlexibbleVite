@@ -6,7 +6,7 @@ const Categories = () => {
   const snap = useSnapshot(state);
   return (
     <div className="flexBetween w-full gap-5 flex-wrap ">
-      <ul className="w-full flex gap-2 overflow-x-auto overflow-y-hidden">
+      <ul className="w-full flex gap-2 overflow-x-auto overflow-y-hidden h-auto pb-2">
         {categoryFilters.map((filter) => (
           <ButtonMotion
             key={filter}

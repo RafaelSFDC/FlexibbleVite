@@ -20,7 +20,7 @@ const Projects = () => {
         name={project.createdBy[0].name}
         avatarUrl={project.createdBy[0].avatarURL}
         userId={project.createdBy[0].$id}
-        index={index}
+        index={count}
       />
     );
   });

@@ -12,10 +12,8 @@ import CreateAccountModal from "./components/modals/CreateAccountModal";
 import LoginModal from "./components/modals/LoginModal";
 function App() {
   useEffect(() => {
-    return () => {
-      checkUser();
-      appWriteGetProjects();
-    };
+    checkUser();
+    appWriteGetProjects();
   }, []);
 
   return (

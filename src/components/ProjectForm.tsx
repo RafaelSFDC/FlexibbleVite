@@ -18,10 +18,8 @@ const ProjectForm = ({ type }: { type: string }) => {
 
   // EDIT FORM ONLY
   useEffect(() => {
-    return () => {
-      if (type === "edit") setSelectedImage(projectDetails.image);
-    };
-  }, []);
+    if (type === "edit") setSelectedImage(projectDetails.image);
+  }, [type]);
 
   type ProjectDetails = {
     $id: string;

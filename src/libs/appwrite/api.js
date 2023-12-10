@@ -28,7 +28,7 @@ export const checkUser = async () => {
 //==================================
 // CREDENTIALS
 //==================================
-export async function appWriteCreateUser(user, setLoading) {
+export async function appWriteCreateUser(user) {
     console.log("user", user)
     state.loading.createAccount = true
     try {
@@ -40,8 +40,9 @@ export async function appWriteCreateUser(user, setLoading) {
         );
 
         if (!newAccount) throw Error;
-
+        console.log("newAccount ERROR")
         const avatarUrl = avatars.getInitials(user.name);
+        console.log("ERRROR AVATARURL")
 
         const newUser = await appWriteSaveUserToDB({
             accountId: newAccount.$id,
@@ -50,13 +51,12 @@ export async function appWriteCreateUser(user, setLoading) {
             username: user.username,
             avatarURL: avatarUrl,
         });
-
+        console.log("ERRROR NEWUSER")
         return newUser;
     } catch (error) {
         console.log("THE ERROR", error);
         throw error
     } finally {
-        setLoading(false)
         state.loading.createAccount = false
     }
 }

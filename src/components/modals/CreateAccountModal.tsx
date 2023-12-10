@@ -27,7 +27,10 @@ const CreateAccountModal = () => {
         state.createAccountModal = false;
         return `Your account has been created successfully`;
       },
-      error: "Something went wrong, please try again later",
+      error: () => {
+        state.loading.createAccount = false;
+        return "Something went wrong, please try again later";
+      },
     });
   };
 

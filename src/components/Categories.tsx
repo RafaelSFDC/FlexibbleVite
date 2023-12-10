@@ -14,9 +14,9 @@ const Categories = () => {
             onClick={() => {
               state.activeFilter = filter;
             }}
-            className={`px-4 py-3 rounded-lg capitalize whitespace-nowrap ${
+            className={`px-2 py-3 rounded-lg capitalize whitespace-nowrap bg-transparent ${
               snap.activeFilter === filter
-                ? "bg-primary-purple text-white font-medium"
+                ? " text-primary-purple font-medium"
                 : "font-normal bg-light-white-100"
             } `}
           >

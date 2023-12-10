@@ -37,12 +37,15 @@ const Navbar = () => {
               />
             </button>
 
-            <button onClick={() => (state.projectModalForm = true)}>
+            <ButtonMotion
+              onClick={() => (state.projectModalForm = true)}
+              className="text-sm bg-transparent"
+            >
               Share Work
-            </button>
+            </ButtonMotion>
             <ButtonMotion
               type="button"
-              className="text-sm"
+              className="text-sm bg-transparent"
               onClick={() => ((state.logged = false), appWriteLogout())}
             >
               Sign Out
@@ -51,14 +54,14 @@ const Navbar = () => {
         ) : (
           <>
             <ButtonMotion
-              className="btn btn-ghost btn-small"
+              className="text-sm bg-transparent font-medium"
               onClick={() => (state.loginModal = true)}
             >
               Sign In
             </ButtonMotion>
 
             <ButtonMotion
-              className="btn btn-primary btn-small bg"
+              className="text-sm bg-transparent"
               onClick={() => (state.createAccountModal = true)}
             >
               Sign Up

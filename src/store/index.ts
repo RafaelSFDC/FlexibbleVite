@@ -5,7 +5,7 @@ const state = proxy({
   loading: {
     start: true,
     chats: true,
-    createAccount: true,
+    createAccount: false,
     projects: true,
   },
   userId: "",

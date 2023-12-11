@@ -27,8 +27,10 @@ const Navbar = () => {
             <button>
               <img
                 src={
-                  snap.userInfo.avatarURL
-                    ? state.userInfo.avatarURL
+                  snap.logged &&
+                  snap.userInfo &&
+                  snap.userInfo.avatarURL.length > 1
+                    ? snap.userInfo.avatarURL
                     : "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
                 }
                 alt="user"

@@ -9,6 +9,7 @@ export const checkUser = async () => {
     try {
         const response = await account.get()
         state.user = response
+        console.log()
         state.logged = true
         const userCollection = await databases.listDocuments(
             appwriteConfig.databaseId,
@@ -16,7 +17,7 @@ export const checkUser = async () => {
             [Query.equal("accountId", response.$id)]
         )
         state.userCollection = userCollection.documents[0].$id
-        state.userInfo = userCollection.documents[0]
+        state.userInfo = userCollection.documents[0] ? userCollection.documents[0] : null
         appWriteProjectSnapshot()
         appWriteUserSnapshot()
         return response
@@ -65,8 +66,7 @@ export async function appWriteCreateUser(user) {
 export const appWriteLogin = async (userAccount) => {
     try {
         const response = await account.createEmailSession(userAccount.email, userAccount.password)
-        state.logged = true
-        checkUser()
+        await checkUser()
         return response;
     } catch (error) {
         throw new Error("Invalid credentials, please try again");
@@ -105,8 +105,8 @@ export async function uploadFile(file) {
     const fileUrl = storage.getFilePreview(
         appwriteConfig.storageId,
         uploadedFile.$id,
-        2000,
-        2000,
+        1100,
+        1100,
         "top",
         100
     );

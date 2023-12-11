@@ -12,7 +12,7 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
     <h4 className="font-semibold">{title}</h4>
     <ul className="flex flex-col gap-2 font-normal">
       {links.map((link) => (
-        <a href={"/"} key={link}>
+        <a href={"#"} key={link}>
           {link}
         </a>
       ))}

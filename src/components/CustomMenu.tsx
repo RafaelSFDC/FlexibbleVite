@@ -22,15 +22,17 @@ const CustomMenu = ({ title, filters, name, defaultValue }: Props) => {
           <option value="" disabled className="custom-option">
             Select a category
           </option>
-          {filters.map((filter) => (
-            <option
-              key={filter}
-              value={filter}
-              className="cursor-pointer custom-option"
-            >
-              {filter}
-            </option>
-          ))}
+          {filters.map((filter, index) =>
+            index === 0 ? null : (
+              <option
+                key={filter}
+                value={filter}
+                className="cursor-pointer custom-option"
+              >
+                {filter}
+              </option>
+            )
+          )}
         </select>
       </div>
     </div>

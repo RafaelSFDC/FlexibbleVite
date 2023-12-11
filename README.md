@@ -1,23 +1,14 @@
 <br/>
 <p align="center">
-  <a href="https://github.com/RafaelSFDC/AppWrite-Chat">
-    <img src="images/logo.svg" alt="Logo" width="80" height="80">
-  </a>
+    <h3 align="center">
 
-  <h3 align="center">Flexibble</h3>
+![Screen Shot](/public/logo-purple.svg)
+
+  </h3>
 
   <p align="center">
     Rede para programadores mostrarem seus trabalhos
     <br/>
-    <br/>
-    <a href="https://github.com/RafaelSFDC/Flexibble"><strong>Explore the docs »</strong></a>
-    <br/>
-    <br/>
-    <!-- <a href="https://github.com/RafaelSFDC/AppWrite-Chat">View Demo</a>
-    .
-    <a href="https://github.com/RafaelSFDC/AppWrite-Chat/issues">Report Bug</a>
-    .
-    <a href="https://github.com/RafaelSFDC/AppWrite-Chat/issues">Request Feature</a> -->
   </p>
 </p>
 
@@ -34,13 +25,13 @@
 
 ## Sobre o projeto
 
-![Screen Shot](public/images/logo.svg)
+![Screen Shot](https://cloud.appwrite.io/v1/storage/buckets/6570be7171f4ac9e1f36/files/6575068f99c9e02908a2/view?project=656f996fca7e396a7523)
 
 Esse é um projeto que eu fiz com base no [JavaScriptMastery](https://www.youtube.com/watch?v=986hztrfaSQ) porém eu mudei algumas coisas e pretendo implementar algumas funcionalidades extras. A maior diferença é que ele fez usando GraphQL e eu fiz usando AppWrite então nossa estutura de código está bem diferente, principalmente porque ele está usando Server Side Functions e eu não por conta que estou usando valtio o que deixa o fluxo do trabalho pra mim melhor de trabalhar, mas pretendo passar o máximo de coisas que eu puder pra Server Side.
 
 ## Lista de dependências
 
-- [NextJS](https://nextjs.org/)
+- [Vite](https://vitejs.dev/)
 - [AppWrite](https://appwrite.io/)
 - [Framer Motion](https://www.framer.com/motion/)
 - [Valtio](https://valtio.pmnd.rs/)

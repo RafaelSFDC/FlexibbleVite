@@ -27,7 +27,7 @@
 
 ![Screen Shot](https://cloud.appwrite.io/v1/storage/buckets/6570be7171f4ac9e1f36/files/6575068f99c9e02908a2/view?project=656f996fca7e396a7523)
 
-Esse é um projeto que eu fiz com base no [JavaScriptMastery](https://www.youtube.com/watch?v=986hztrfaSQ) porém eu mudei algumas coisas e pretendo implementar algumas funcionalidades extras. A maior diferença é que ele fez usando GraphQL e eu fiz usando AppWrite então nossa estutura de código está bem diferente, principalmente porque ele está usando Server Side Functions e eu não por conta que estou usando valtio o que deixa o fluxo do trabalho pra mim melhor de trabalhar, mas pretendo passar o máximo de coisas que eu puder pra Server Side.
+Esse é um projeto que eu fiz com base no [JavaScriptMastery](https://www.youtube.com/watch?v=986hztrfaSQ) porém eu mudei algumas coisas e pretendo implementar algumas funcionalidades extras. Ele fez o projeto em NextJS e eu fiz em Vite, por questão de gosto pessoal. Ele fez em GrahQL e eu preferi usar Appwrite. É uma especie de rede social onde os programdores podem postar, editar, e deletar projetos. E qualquer pessoa pode acessar o site e ver os projetos.
 
 ## Lista de dependências
 
@@ -40,7 +40,7 @@ Esse é um projeto que eu fiz com base no [JavaScriptMastery](https://www.youtub
 
 ## Começando
 
-Vou assumir que você já tenha o básico para usar NextJS instalado.
+Vou assumir que você já tenha o básico para usar NextJS / Vite instalado.
 
 1. Primeiramente você precisa ir para site [Appwrite](https://www.framer.com/motion/), criar uma conta e criar um projeto.
 2. **(Opcional)** Use a opção adicionar plataforma selecione sua plataforma e use as instruções para configurar o seu projeto.

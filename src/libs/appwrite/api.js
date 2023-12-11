@@ -18,6 +18,7 @@ export const checkUser = async () => {
         state.userCollection = userCollection.documents[0].$id
         state.userInfo = userCollection.documents[0]
         appWriteProjectSnapshot()
+        appWriteUserSnapshot()
         return response
     } catch (error) {
         state.logged = false
@@ -74,6 +75,9 @@ export const appWriteLogin = async (userAccount) => {
 export const appWriteLogout = async () => {
     const response = await account.deleteSession('current')
     state.logged = false
+    state.user = null
+    state.userCollection = null
+    state.userInfo = null
     return response
 }
 //==================================
@@ -248,6 +252,23 @@ export async function appWriteProjectSnapshot() {
                 state.projects[index] = response.payload;
                 console.log("Project updated:", response.payload);
             }
+            return
+        }
+    })
+}
+export async function appWriteUserSnapshot() {
+    client.subscribe([`databases.${appwriteConfig.databaseId}.collections.${appwriteConfig.userCollectionId}.documents.${state.userCollection}`], (response) => {
+        console.log("REALTIME USER", response)
+        if (response.events.includes("databases.*.collections.*.documents.*.create")) {
+            console.log("CREATED", response)
+            console.log("THIS ACTIVATED")
+
+        }
+        if (response.events.includes("databases.*.collections.*.documents.*.delete")) {
+            console.log("DELETED", response)
+        }
+        if (response.events.includes("databases.*.collections.*.documents.*.update")) {
+            console.log("update")
             return
         }
     })

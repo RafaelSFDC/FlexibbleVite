@@ -1,4 +1,4 @@
-import { account, appwriteConfig, avatars, databases, storage } from "./AppWriteConfig";
+import { account, client, appwriteConfig, avatars, databases, storage } from "./AppWriteConfig";
 import { ID, Query } from "appwrite";
 import state from './../../store/index';
 
@@ -17,6 +17,7 @@ export const checkUser = async () => {
         )
         state.userCollection = userCollection.documents[0].$id
         state.userInfo = userCollection.documents[0]
+        appWriteProjectSnapshot()
         return response
     } catch (error) {
         state.logged = false
@@ -60,7 +61,6 @@ export async function appWriteCreateUser(user) {
         state.loading.createAccount = false
     }
 }
-
 export const appWriteLogin = async (userAccount) => {
     try {
         const response = await account.createEmailSession(userAccount.email, userAccount.password)
@@ -199,7 +199,6 @@ export async function appWriteEditProject(project, file) {
         }
     }
 }
-
 //==================================
 // DELETE DOCUMENTS
 //==================================
@@ -218,4 +217,38 @@ export async function appWriteDeleteProject(id) {
     } finally {
         state.deletingProject = false
     }
+}
+//==================================
+// SNAPSHOT
+//==================================
+export async function appWriteProjectSnapshot() {
+    console.log("SNAP")
+    client.subscribe([`databases.${appwriteConfig.databaseId}.collections.${appwriteConfig.projectsCollectionId}.documents`], (response) => {
+        console.log("REALTIME", response)
+        if (response.events.includes("databases.*.collections.*.documents.*.create")) {
+            console.log("CREATED", response)
+            console.log("THIS ACTIVATED")
+            state.projects.push(response.payload)
+
+
+        }
+        if (response.events.includes("databases.*.collections.*.documents.*.delete")) {
+            console.log("DELETED", response)
+            state.activeProject = -1
+            state.projects = state.projects.filter(project => project.$id !== response.payload.$id)
+
+        }
+        if (response.events.includes("databases.*.collections.*.documents.*.update")) {
+            console.log("update")
+            // Find the index of the updated project in state.projects
+            const index = state.projects.findIndex(project => project.$id === response.payload.$id);
+
+            if (index !== -1) {
+                // Update the values of the project
+                state.projects[index] = response.payload;
+                console.log("Project updated:", response.payload);
+            }
+            return
+        }
+    })
 }

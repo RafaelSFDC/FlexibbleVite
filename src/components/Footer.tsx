@@ -1,4 +1,6 @@
+import { useSnapshot } from "valtio";
 import { footerLinks } from "../constants";
+import state from "../store";
 
 type ColumnProps = {
   title: string;
@@ -19,6 +21,7 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
 );
 
 const Footer = () => {
+  const snap = useSnapshot(state);
   return (
     <footer className="flexStart footer">
       <div className="flex flex-col gap-12 w-full">
@@ -73,7 +76,9 @@ const Footer = () => {
       <div className="flexBetween footer_copyright">
         <p>@ 2023 Flexibble. All rights reserved</p>
         <p className="fext-gray">
-          <span className="text-black font-semibold">10,214 </span>
+          <span className="text-black font-semibold">
+            {snap.projects.length} {""}
+          </span>
           projects submitted
         </p>
       </div>

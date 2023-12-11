@@ -25,6 +25,10 @@ const ButtonMotion = ({
       className={`flexCenter gap-3 px-4 py-3 rounded-xl text-sm font-medium max-md:w-full bg-primary-purple  ${
         className ?? "text-white"
       }`}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3 }}
+      exit={{ opacity: 0 }}
       onClick={onClick}
       whileTap={{ scale: 0.9 }}
       whileHover={{ scale: 1.1 }}
